@@ -1,0 +1,14 @@
+target/
+*.log
+*.class
+
+.idea/
+*.iml
+.vscode/
+
+.mvn/wrapper/maven-wrapper.jar
+
+logs/
+tmp/
+
+application-local.yml

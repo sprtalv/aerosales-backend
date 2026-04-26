@@ -1,0 +1,2 @@
+-- AeroSales database initialization script.
+-- Database table design and test data will be added in phase 2.
