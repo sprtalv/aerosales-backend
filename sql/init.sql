@@ -1,16 +1,12 @@
-CREATE DATABASE IF NOT EXISTS aerosales
+DROP DATABASE IF EXISTS aerosales;
+
+CREATE DATABASE aerosales
     DEFAULT CHARACTER SET utf8mb4
     DEFAULT COLLATE utf8mb4_unicode_ci;
 
 USE aerosales;
 
-DROP TABLE IF EXISTS stock_log;
-DROP TABLE IF EXISTS sales_order_item;
-DROP TABLE IF EXISTS sales_order;
-DROP TABLE IF EXISTS product_sku;
-DROP TABLE IF EXISTS product;
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS product_category;
+SET NAMES utf8mb4;
 
 CREATE TABLE product_category (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '分类ID',
@@ -25,7 +21,7 @@ CREATE TABLE product_category (
 CREATE TABLE product (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '产品ID',
     category_id BIGINT NOT NULL COMMENT '分类ID',
-    name VARCHAR(150) NOT NULL COMMENT '产品名称',
+    name VARCHAR(200) NOT NULL COMMENT '产品名称',
     brand VARCHAR(100) NOT NULL COMMENT '品牌',
     description TEXT COMMENT '产品描述',
     status VARCHAR(20) NOT NULL DEFAULT 'ON_SALE' COMMENT '状态：ON_SALE/OFF_SALE',
@@ -40,7 +36,7 @@ CREATE TABLE product (
 CREATE TABLE product_sku (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT 'SKU ID',
     product_id BIGINT NOT NULL COMMENT '产品ID',
-    sku_name VARCHAR(150) NOT NULL COMMENT 'SKU名称',
+    sku_name VARCHAR(200) NOT NULL COMMENT 'SKU名称',
     volume VARCHAR(50) NOT NULL COMMENT '容量规格',
     package_spec VARCHAR(100) NOT NULL COMMENT '包装规格',
     price DECIMAL(10, 2) NOT NULL COMMENT '销售价格',
@@ -97,8 +93,8 @@ CREATE TABLE sales_order_item (
     id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '订单明细ID',
     order_id BIGINT NOT NULL COMMENT '订单ID',
     sku_id BIGINT NOT NULL COMMENT 'SKU ID',
-    product_name VARCHAR(150) NOT NULL COMMENT '下单时产品名称快照',
-    sku_name VARCHAR(150) NOT NULL COMMENT '下单时SKU名称快照',
+    product_name VARCHAR(200) NOT NULL COMMENT '下单时产品名称快照',
+    sku_name VARCHAR(200) NOT NULL COMMENT '下单时SKU名称快照',
     quantity INT NOT NULL COMMENT '购买数量',
     unit_price DECIMAL(10, 2) NOT NULL COMMENT '下单时单价',
     subtotal DECIMAL(10, 2) NOT NULL COMMENT '小计金额',
